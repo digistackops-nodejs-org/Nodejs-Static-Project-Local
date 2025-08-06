@@ -1,4 +1,6 @@
 # nodejs-app-Nexus-LAB
+Launch EC2 "t2.micro" Instance and Open port "9990" in Security Group
+
 ## Install Node
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
