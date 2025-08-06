@@ -1,6 +1,5 @@
 # nodejs-app-Nexus-LAB
 ## Install Node
-
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
@@ -10,6 +9,10 @@ nvm install 16
 ```
 node -v
 npm -v
+```
+## Install Git
+```
+sudo yum install git -y
 ```
 ### To start this application first you can get this repo code using below url
 #### Clone the Repo
