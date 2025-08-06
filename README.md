@@ -1,2 +1,41 @@
-# Nodejs-Static-Project
-Basic Nodejs App for Demonistrate Nexus and CICD
+# nodejs-app-Nexus-LAB
+## Install Node
+
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install 16
+```
+### Check Node Version
+```
+node -v
+npm -v
+```
+### To start this application first you can get this repo code using below url
+#### Clone the Repo
+```
+git clone https://github.com/techizone-Small-Project-org/Nodejs-Static-Project.git
+```
+#### Switch to Local-setup Branch
+```
+cd Nodejs-Static-Project
+git checkout Local-setup
+```
+#### Download the Dependencies
+```
+npm install
+```
+#### Start the Application
+```
+node app.js
+
+(OR) 
+
+npm start
+```
+To execute Test cases, we will run the below command
+
+```
+npm test
+```
+
