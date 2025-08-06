@@ -31,16 +31,12 @@ npm install
 #### Start the Application
 ```
 node app.js
-
-(OR) 
-
-npm start
-
+```
 #### Access Your Application in Browser
 ```
 http://<Your-AWS-Public-IP>:9990/sapsecops
 ```
-```
+
 To execute Test cases, we will run the below command
 
 ```
