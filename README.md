@@ -24,7 +24,7 @@ git clone https://github.com/techizone-Small-Project-org/Nodejs-Static-Project.g
 #### Switch to Local-setup Branch
 ```
 cd Nodejs-Static-Project
-git checkout Local-setup
+git checkout 01-Local-setup
 ```
 #### Download the Dependencies
 ```
