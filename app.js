@@ -9,63 +9,87 @@ const appEnv = cfenv.getAppEnv();
 app.set('port', process.env.PORT || 9990);
 
 function getServerIp() {
-    const interfaces = os.networkInterfaces();
-    for (let iface in interfaces) {
-        for (let alias of interfaces[iface]) {
-            if (alias.family === 'IPv4' && !alias.internal) {
-                return alias.address;
-            }
-        }
+  const interfaces = os.networkInterfaces();
+  for (let iface in interfaces) {
+    for (let alias of interfaces[iface]) {
+      if (alias.family === 'IPv4' && !alias.internal) {
+        return alias.address;
+      }
     }
-    return 'IP not found';
+  }
+  return 'IP not found';
 }
 
-// Serve static files from /images folder
+function getHostname() {
+  return os.hostname();
+}
+
+// Serve static files (like logo image)
 app.use(express.static(path.join(__dirname, 'images')));
 
-function addStyles(content) {
+function styledPage(host, ip) {
   return `
   <html>
     <head>
-      <title>Welcome - sapsecops Solutions</title>
+      <title>DigiStack Solutions</title>
       <style>
         body {
-          background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+          background-color: #f1c40f; /* Yellow background */
           font-family: Arial, sans-serif;
-          color: #333;
           text-align: center;
-          padding: 50px;
-          animation: fadeIn 1.5s ease-in-out;
+          margin: 0;
+          padding: 0;
         }
-        h2 {
-          margin: 20px 0;
+        .header {
+          background-color: #333;
+          color: white;
+          height: 60px;
+          padding: 15px 0;
+          font-size: 20px;
+          font-weight: bold;
+          overflow: hidden;
+          position: relative;
         }
-        span {
-          color: red;
-        }
-        .card {
-          background: white;
-          padding: 30px;
-          border-radius: 15px;
-          box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        .scroll-text {
           display: inline-block;
-          animation: slideUp 1.2s ease;
+          white-space: nowrap;
+          position: absolute;
+          will-change: transform;
+          animation: scroll-left 12s linear infinite;
         }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+        @keyframes scroll-left {
+          0% { transform: translateX(100%); }
+          100% { transform: translateX(-100%); }
         }
-        @keyframes slideUp {
-          from { transform: translateY(40px); opacity: 0; }
-          to { transform: translateY(0); opacity: 1; }
+        .content {
+          margin-top: 50px;
+        }
+        .info {
+          font-size: 18px;
+          margin: 15px 0;
+        }
+        .info span {
+          font-weight: bold;
+        }
+        .logo {
+          margin-top: 30px;
+        }
+        .logo img {
+          width: 200px;
+          height: auto;
         }
       </style>
     </head>
     <body>
-      <div class="card">
-        <h2>✨ Welcome to <b>sapsecops Solutions</b> ✨</h2>
-        <p>${content}</p>
-        <h4>We are glad to see you here! 🚀</h4>
+      <div class="header">
+        <div class="scroll-text">✨ DigiStack Solutions Node.js Project ✨</div>
+      </div>
+      <div class="content">
+        <div class="info"><span>Hostname:</span> ${host}</div>
+        <div class="info"><span>IP Address:</span> ${ip}</div>
+        <div class="logo">
+          <img src="/sapsecops_logo.png" alt="SAPSECOPS Logo">
+        </div>
       </div>
     </body>
   </html>
@@ -75,56 +99,11 @@ function addStyles(content) {
 // Route: /digistack
 app.get('/digistack', (req, res) => {
   const ip = getServerIp();
-  res.send(addStyles(`
-    <h2>Your Server IP Address: <span>${ip}</span></h2>
-  `));
-});
-
-// Route: /docker
-app.get('/docker', (req, res) => {
-  const ip = getServerIp();
-  res.send(addStyles(`
-    <h2><span style="color:green;">Docker App</span> is running!</h2>
-    <h2>Server IP Address: <span>${ip}</span></h2>
-  `));
-});
-
-// Route: /html
-app.get('/html', (req, res) => {
-  res.send(addStyles(`<h2>Welcome</h2><h2>/html call successful ✅</h2>`));
-});
-
-// Route: /jsonData
-app.get('/jsonData', (req, res) => {
-  res.json({
-    name: 'sapsecops Solutions',
-    technology: 'DevOps',
-    contact: '9980923226',
-    email: 'digistacksolutions@gmail.com'
-  });
-});
-
-// Route: /queryparam?key=course&name=devops
-app.get('/queryparam', (req, res) => {
-  res.send(addStyles(`<h2>${req.query.key}: ${req.query.name}</h2>`));
-});
-
-// Route: /status-code-404
-app.get('/status-code-404', (req, res) => {
-  res.status(404).send(addStyles('❌ Sorry, we cannot find that!'));
-});
-
-// Route: /status-code-500
-app.get('/status-code-500', (req, res) => {
-  res.status(500).send(addStyles('⚠️ Internal Server Error – custom message'));
-});
-
-// Route: /redirect
-app.get('/redirect', (req, res) => {
-  res.redirect('http://sapsecops.com');
+  const host = getHostname();
+  res.send(styledPage(host, ip));
 });
 
 // Start the server
 app.listen(app.get('port'), () => {
-  console.log(`Node JS app is running at http://localhost:${app.get('port')}/digistack`);
+  console.log(`Node JS app running at http://localhost:${app.get('port')}/digistack`);
 });
