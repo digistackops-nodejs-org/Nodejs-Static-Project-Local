@@ -23,7 +23,7 @@ function getServerIp() {
 app.use(express.static(path.join(__dirname, 'images')));
 
 // Route: /sapsecops
-app.get('/sapsecops', (req, res) => {
+app.get('/digistack', (req, res) => {
   const ip = getServerIp();
   res.send(`
     <h2><center><u>Node JS App</u></center></h2>
@@ -55,7 +55,7 @@ app.get('/jsonData', (req, res) => {
     name: 'sapsecops Solutions',
     technology: 'DevOps',
     contact: '9980923226',
-    email: 'sapsecopssolutions@gmail.com'
+    email: 'digistacksolutions@gmail.com'
   });
 });
 
@@ -81,5 +81,5 @@ app.get('/redirect', (req, res) => {
 
 // Start the server
 app.listen(app.get('port'), () => {
-  console.log(`Node JS app is running at http://localhost:${app.get('port')}/sapsecops`);
+  console.log(`Node JS app is running at http://localhost:${app.get('port')}/digistack`);
 });
