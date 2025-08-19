@@ -38,6 +38,8 @@ node app.js
 ```
 http://<Your-AWS-Public-IP>:9990/digistack
 ```
+<img width="950" height="228" alt="image" src="https://github.com/user-attachments/assets/24f9ac98-2c47-4a38-b8a1-a53fe3f2093d" />
+
 
 To execute Test cases, we will run the below command
 
