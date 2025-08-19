@@ -88,7 +88,7 @@ function styledPage(host, ip) {
         <div class="info"><span>Hostname:</span> ${host}</div>
         <div class="info"><span>IP Address:</span> ${ip}</div>
         <div class="logo">
-          <img src="/sapsecops_logo.png" alt="SAPSECOPS Logo">
+          <img src="/SSO.png" alt="SAPSECOPS Logo">
         </div>
       </div>
     </body>
